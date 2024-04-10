@@ -1,0 +1,15 @@
+# ninja log v5
+7	87	7344619601251952	CMakeFiles/Cproj.dir/Address.c.obj	fceb5dc8f6cece3a
+17	88	7344619601421987	CMakeFiles/Cproj.dir/Facility.c.obj	5b7c26ce37838b35
+31	109	7344619601631964	CMakeFiles/Cproj.dir/Guest.c.obj	d2ba5589fe414dfc
+37	115	7344619601691968	CMakeFiles/Cproj.dir/Hotel.c.obj	9c7a3a77a4e13a18
+1	122	7344619601751955	CMakeFiles/Cproj.dir/main.c.obj	79e0038aaf6210e7
+49	125	7344619601791955	CMakeFiles/Cproj.dir/Reservation.c.obj	f24f9c41499587e8
+12	130	7344619601841957	CMakeFiles/Cproj.dir/Date.c.obj	39c64b7ba0642f21
+56	137	7344619601911967	CMakeFiles/Cproj.dir/Review.c.obj	91e7f520c7532427
+25	144	7344619601981950	CMakeFiles/Cproj.dir/General.c.obj	85331c3faf66a630
+71	151	7344619602071961	CMakeFiles/Cproj.dir/Room.c.obj	e88e9eedc9a9cd1
+43	163	7344619602191958	CMakeFiles/Cproj.dir/HotelSystem.c.obj	746d71b6a107886b
+65	174	7344619602291938	CMakeFiles/Cproj.dir/User.c.obj	d1fc1c7d53b825d0
+78	184	7344619602401935	CMakeFiles/Cproj.dir/List.c.obj	c46361652f19a67c
+184	294	7344619603452341	Cproj.exe	ad948db2b3f3c053
