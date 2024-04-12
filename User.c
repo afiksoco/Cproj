@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -25,4 +26,4 @@ char* getName()
 void printUser(User* pUser)
 {
     printf("Name : %s %s\n",pUser->name,pUser->lastName);
-}
+}*/

@@ -5,19 +5,29 @@
 #include "Hotel.h"
 #include "User.h"
 
-typedef struct
-{
-	Hotel*  hotelsArr;
-	int		numOfHotels;
-	User*   allUsers;
-	int		numOfUsers;
-}HotelSystem;
+typedef struct {
+    Hotel *hotelsArr;
+    int numOfHotels;
+    int numOfUsers;
+} HotelSystem;
 
-void initHotelSystem(HotelSystem* pHs);
-User* userInfo(HotelSystem* pHs);
-User* getUser(HotelSystem* pHs,char* id);
-int isValidID(char* id);
-void printAllUsers(HotelSystem* pHs);
-int signUp(char* id, HotelSystem* pHs);
+void initHotelSystem(HotelSystem *pHs);
+
+int isValidID(char *id);
+
+void printAllUsers(HotelSystem *pHs);
+
+void printAllHotels(HotelSystem *pHs);
+
+int addHotelToSystem(HotelSystem *pHs);
+
+Hotel *getHotelByName(HotelSystem *pHs, char *hotelName);
+
+void printSystem(HotelSystem *pHs);
+
+Hotel *hotelInfo(HotelSystem *pHs);
+
+
+int signUp(char *id, HotelSystem *pHs);
 
 #endif

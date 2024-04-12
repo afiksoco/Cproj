@@ -8,11 +8,10 @@ typedef struct
 	char*		name;
 	char*		lastName;
 	char*		phoneNumber;
-	char*		email;
 	char*		id;
 
 }Guest;
 
-int initGuest(char* id);
+int initGuest(Guest *pGuest);
 
 #endif

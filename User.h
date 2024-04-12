@@ -1,3 +1,4 @@
+/*
 #ifndef __USER__
 #define __USER__
 
@@ -18,4 +19,4 @@ typedef struct
 void initUser(User* pUser, char* id);
 void printUser(User* pUser);
 
-#endif
+#endif*/

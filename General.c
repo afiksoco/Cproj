@@ -17,7 +17,7 @@ char* getStrExactName(const char* msg)
 	return str;
 }
 
-char* fileGetStrExactName(FILE* fp)
+/*char* fileGetStrExactName(FILE* fp)
 {
 	char* str;
 	char temp[MAX_STR_LEN];
@@ -25,7 +25,27 @@ char* fileGetStrExactName(FILE* fp)
 
 	str = getDynStr(temp);
 	return str;
+}*/
+
+
+void toTitleCase(char *str) {
+    int i, len;
+    len = strlen(str);
+
+    if(len > 0)
+        str[0] = toupper(str[0]);
+
+    for(i = 1; i < len; i++) {
+        if(str[i-1] == ' ') {
+            str[i] = toupper(str[i]);
+        } else {
+            str[i] = tolower(str[i]);
+        }
+    }
+    str[len] = '\0';
 }
+
+
 
 char* getDynStr(char* str)
 {

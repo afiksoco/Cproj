@@ -2,28 +2,28 @@
 #include <stdlib.h>
 #include "HotelSystem.h"
 #include "Date.h"
+#include "Hotel.h"
+#include "General.h"
 
-typedef enum
-{
-    eUploadFromFile, eShowSystem, eShowAllData, eMakeReservation, eAddReview,
+typedef enum {
+    eUploadFromFile, eShowSystem, eAddHotel, eAddRoomToHotel, eShowAllData, eAddReservation, eAddReview,
     eCancelReservation, eSort, eFind, eNofOptions
 } eMenuOptions;
 
-const char* str[eNofOptions] = { "Upload from file","Show sysyem","Show all data",
-                                 "Make reservation", "Add review",
-                                 "Cancel reservation", "Sort", "Find" };
+const char *str[eNofOptions] = {"Upload from file", "Show system", "Add Hotel", "Add room to hotel", "Show all data",
+                                "Make reservation", "Add review",
+                                "Cancel reservation", "Sort", "Find"};
 
 int menu();
+
 
 #define EXIT -1
 
 
-
-int main()
-{
+int main() {
     HotelSystem hs;
     initHotelSystem(&hs);
-    User* pUser = userInfo(&hs);
+    // User* pUser = userInfo(&hs);
 
 
     int option;
@@ -32,29 +32,48 @@ int main()
     //initDate(&d);
     //printDate(&d);
 
-    do
-    {
+    do {
         option = menu();
-        switch (option)
-        {
+        switch (option) {
             case eUploadFromFile:
                 //
                 break;
 
             case eShowSystem:
-                //
-                printAllUsers(&hs);
+
+                printAllHotels(&hs);
                 break;
 
+            case eAddHotel:
+                if (addHotelToSystem(&hs))
+                    printf("Hotel added successfully.\n");
+                else
+                    printf("Error! try again.\n");
+                break;
+            case eAddRoomToHotel:
+                if (hs.numOfHotels == 0) {
+                    printf("No hotels in system! Exiting...\n");
+                    break;
+                }
+                addRoom(hotelInfo(&hs));
+                printf("Room inserted successfully\n");
+                break;
             case eShowAllData:
-                // ????????
+                printSystem(&hs);
                 break;
 
-            case eMakeReservation: ////////?????
-                //res(pCurrectGuest);
+            case eAddReservation: ////////?????
+                if (hs.numOfHotels == 0) {
+                    printf("No hotels in system! Exiting...\n");
+                    break;
+                }
+                if (!createReservation(hotelInfo(&hs)))
+                    printf("Error creating reservation");
+
+
                 break;
 
-            case eAddReview: /// maybe to speciffic hotel ?
+            case eAddReview: /// maybe to specific hotel ?
 
                 break;
 
@@ -92,8 +111,7 @@ int main()
 }
 
 
-int menu()
-{
+int menu() {
     int option;
     printf("\n\n");
     printf("Please choose one of the following options\n");
