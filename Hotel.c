@@ -22,18 +22,6 @@ int addRoom(Hotel *pHotel) {
     return 1;
 }
 
-
-/*int addReservation(Hotel *pHotel) {
-    pHotel->allReservations = (Reservation *) realloc(pHotel->allReservations,
-                                                      (pHotel->reservationCount + 1) * sizeof(Reservation));
-    if (!pHotel->allReservations)
-        return 0;
-    initReservation(&pHotel->allReservations[pHotel->reservationCount], pHotel->allReservations,
-                    pHotel->reservationCount);
-    pHotel->reservationCount++;
-    return 1;
-}*/
-
 int initHotel(Hotel *pHotel) {
     pHotel->hotelName = getStrExactName("Enter hotel name\n");
     toTitleCase(pHotel->hotelName);
@@ -66,21 +54,30 @@ int createReservation(Hotel *pHotel) {
     if (!pReservation) return 0;
 
     Room *pRoom = getRoom(pHotel);
-    printf("There are no rooms to csscscsccsction.\n");
-
     initReservation(pReservation, pHotel->allReservations, pHotel->reservationCount, pRoom);
-    printf("aadasd");
     pHotel->allReservations = (Reservation **) realloc(pHotel->allReservations,
                                                        (pHotel->reservationCount + 1) * sizeof(Reservation *));
-    if (!pHotel->allReservations)
-    {
+    if (!pHotel->allReservations) {
         free(pRoom);
         return 0;
     }
     pHotel->allReservations[pHotel->reservationCount] = pReservation;
     pHotel->reservationCount++;
+
+    printReservation(pReservation);
     return 1;
 
+}
+
+int isRoomOccupied(Reservation **reservations, int size, int roomNumber, Date checkin, Date checkout) {
+    for (int i = 0; i < size; i++) {
+        if (reservations[i]->roomReserved.roomNumber == roomNumber)
+            if (compareDates(&reservations[i]->checkInDate, &checkout) < 0 &&
+                compareDates(&reservations[i]->checkOutDate, &checkin) > 0) {
+                return 1;
+            }
+    }
+    return 0;
 }
 
 Room *getRoom(Hotel *pHotel) {
@@ -111,9 +108,21 @@ void freeHotel(Hotel *pHotel) {
     ///// need to free a lot more.
 }
 
+void printOccupiedDates(Reservation **reservations, int size, int roomNumber) {
+    printf("\nOccupied dates : \n");
+    for (int i = 0; i < size; i++) {
+        if (reservations[i]->roomReserved.roomNumber == roomNumber) {
+            printDate(&reservations[i]->checkInDate);
+            printf(" ---> ");
+            printDate(&reservations[i]->checkOutDate);
+            printf("\n");
 
-void freeResArray(Reservation **allRes, int size)
-{
+
+        }
+    }
+}
+
+void freeResArray(Reservation **allRes, int size) {
     for (int i = 0; i < size; i++)
         free(allRes[i]);
 

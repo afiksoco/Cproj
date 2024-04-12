@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "Room.h"
+#include <stdlib.h>
 
+#include "Room.h"
+#include "Reservation.h"
 
 eRoomType getRoomType() {
     int option;
@@ -18,6 +20,8 @@ eRoomType getRoomType() {
 }
 
 
+
+
 void initRoom(Room *pRoom, int roomCount) {
     pRoom->type = getRoomType();
     if (pRoom->type == 0)
@@ -28,8 +32,7 @@ void initRoom(Room *pRoom, int roomCount) {
         printf("Suite chosen! enter capacity");
         scanf("%d", &pRoom->capacity);
     }
-    pRoom->guests = NULL;
-
+    // pRoom->guests = NULL;
     pRoom->roomNumber = roomCount + 1;
 }
 

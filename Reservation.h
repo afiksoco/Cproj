@@ -16,9 +16,9 @@ typedef struct {
 
 
     Guest guestOrdered;
-    Room roomReserved;
     Date checkInDate;
     Date checkOutDate;
+    Room roomReserved;
     char reservationCode[RES_CODE_LENGTH + 1];
 
 } Reservation;

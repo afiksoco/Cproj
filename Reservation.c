@@ -7,21 +7,36 @@
 #include "Guest.h"
 #include "General.h"
 #include "Room.h"
+#include "Date.h"
+#include "Hotel.h"
 
 
 void initReservation(Reservation *pReservation, Reservation **resArr, int resCount, Room *pRoom) {
     initGuest(&pReservation->guestOrdered);
-    printf("Check in:\n");
-    initDate(&pReservation->checkInDate); // need to check if the room is available in these dates ?
-    printf("Check out:\n");
-    initDate(&pReservation->checkOutDate);
     int ok = 1;
+    do {
+        ok = 1;
+        printf("Check in:\n");
+        initDate(&pReservation->checkInDate); // need to check if the room is available in these dates ?
+        printf("Check out:\n");
+        do {
+            initDate(&pReservation->checkOutDate);
+            if (compareDates(&pReservation->checkOutDate, &pReservation->checkInDate) <= 0) {
+                printf("Check-out date must be later than the check-in date. Please enter again.\n");
+            }
+        } while (compareDates(&pReservation->checkOutDate, &pReservation->checkInDate) <= 0);
+        if (isRoomOccupied(resArr, resCount, pRoom->roomNumber, pReservation->checkInDate,
+                           pReservation->checkOutDate)) {
+            printf("Your reservation is over lapping other reservation for this room!\n");
+            printOccupiedDates(resArr, resCount, pRoom->roomNumber);
+            ok = 0;
+        }
+    } while (!ok);
+    ok = 1;
     do {
         getReservationCode(pReservation->reservationCode);
 
         for (int i = 0; i < resCount; i++) {
-            printf("Code already exists %d", resCount);
-
             if (!strcmp(pReservation->reservationCode, resArr[i]->reservationCode)) {
                 printf("Code already exists");
                 ok = 0;

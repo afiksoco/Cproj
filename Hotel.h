@@ -40,4 +40,9 @@ int createReservation(Hotel *pHotel);
 
 void freeResArray(Reservation **allRes, int size);
 
+int isRoomOccupied(Reservation **reservations, int size,int roomNumber, Date checkin, Date checkout);
+
+void printOccupiedDates(Reservation **reservations, int size,int roomNumber);
+
+
 #endif
