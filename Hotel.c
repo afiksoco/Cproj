@@ -12,7 +12,7 @@ void printHotel(Hotel *pHotel) {
     printAddress(&pHotel->address);
     if (pHotel->rating == 0) printf("%-10s", "no rating yet");
     else
-        printf("%-10d", pHotel->rating);
+        printf("%-10f", pHotel->rating);
 
 
 }
@@ -197,20 +197,27 @@ int addReview(Hotel *pHotel) {
         freeReview(pReview);
         free(pReview);
     }
+
     NODE *pNode = &pHotel->reviewsList.head;
     L_insert(pNode, pReview);
     pHotel->rating = calcRating(&pHotel->reviewsList);
+    printf("%f",pHotel->rating);
 
     return 1;
 }
 
 double calcRating(LIST *revList) {
+
     double sum = 0;
     int count = 0;
     NODE *pNode = &revList->head;
-    while (pNode->next != NULL) {
+    while (pNode->next != NULL)
+    {
         sum += ((Review *) pNode->next->key)->rating;
         count++;
+        pNode = pNode->next;
+
     }
-    return sum/count;
+
+    return sum / count;
 }
