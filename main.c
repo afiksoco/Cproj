@@ -7,12 +7,12 @@
 
 typedef enum {
     eUploadFromFile, eShowSystem, eAddHotel, eAddRoomToHotel, eShowAllData, eAddReservation, eAddReview,
-    eCancelReservation, eSort, eFind, eNofOptions
+    eCancelReservation, ePrintAllReviews, eSort, eFind, eNofOptions
 } eMenuOptions;
 
 const char *str[eNofOptions] = {"Upload from file", "Show system", "Add Hotel", "Add room to hotel", "Show all data",
                                 "Make reservation", "Add review",
-                                "Cancel reservation", "Sort", "Find"};
+                                "Cancel reservation", "Show all reviews", "Sort", "Find"};
 
 int menu();
 
@@ -45,6 +45,7 @@ int main() {
                 else
                     printf("Error! try again.\n");
                 break;
+
             case eAddRoomToHotel:
                 if (hs.numOfHotels == 0) {
                     printf("No hotels in system! Exiting...\n");
@@ -89,7 +90,13 @@ int main() {
                 break;
                 // maybe show history ?
 
+            case ePrintAllReviews:
+                showAllReviews(hotelInfo(&hs));
+                break;
             case eSort:
+                sortHotel(&hs);
+                printf("\n");
+                printSystem(&hs);
                 break;
 
 

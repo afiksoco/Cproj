@@ -54,4 +54,13 @@ int addReview(Hotel *pHotel);
 
 double calcRating(LIST *revList);
 
+void showAllReviews(Hotel *pHotel);
+
+int	compareByHotelName(const void* v1, const void* v2);
+
+int	compareByRating(const void* v1, const void* v2);
+
+int	compareByNumberOfRooms(const void* v1, const void* v2);
+
+
 #endif

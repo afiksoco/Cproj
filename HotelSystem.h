@@ -4,9 +4,21 @@
 
 #include "Hotel.h"
 
+typedef enum {
+    eName, eRating, eRooms, eNotSorted, eNofSortType
+} eSortType;
+
+
+static const char* SortTypeStr[eNofSortType]
+        = { "Hotel name", "Rating", "Number of rooms", "Not sorted"};
+
+
 typedef struct {
+
     Hotel *hotelsArr;
     int numOfHotels;
+    eSortType	sortType;
+
 } HotelSystem;
 
 void initHotelSystem(HotelSystem *pHs);
@@ -23,5 +35,8 @@ void printSystem(HotelSystem *pHs);
 Hotel *hotelInfo(HotelSystem *pHs);
 
 void freeSystem(HotelSystem *pHs);
+
+void sortHotel(HotelSystem *pHs);
+
 
 #endif

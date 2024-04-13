@@ -36,8 +36,7 @@ Hotel *getHotelByName(HotelSystem *pHs, char *hotelName) {
 }
 
 
-Hotel *hotelInfo(HotelSystem *pHs)
-{
+Hotel *hotelInfo(HotelSystem *pHs) {
     Hotel *pHotel;
     printf("Select hotel from the list below by its name.\n");
     printAllHotels(pHs);
@@ -64,9 +63,35 @@ void printSystem(HotelSystem *pHs) {
     }
 }
 
-
-void printAllHotels(HotelSystem *pHs)
+void sortHotel(HotelSystem *pHs)
 {
+    int opt;
+    printf("Base on what field do you want to sort?\n");
+    do {
+        printf("Enter 1 for hotel name\n");
+        printf("Enter 2 for hotel rating\n");
+        printf("Enter 3 for number of rooms\n");
+        scanf("%d", &opt);
+        switch (opt) {
+            case 1:
+                qsort(pHs->hotelsArr, pHs->numOfHotels, sizeof(Hotel), compareByHotelName);
+                pHs->sortType = eName;
+                break;
+            case 2:
+                qsort(pHs->hotelsArr, pHs->numOfHotels, sizeof(Hotel), compareByRating);
+                pHs->sortType = eRating;
+                break;
+            case 3:
+                qsort(pHs->hotelsArr, pHs->numOfHotels, sizeof(Hotel), compareByNumberOfRooms);
+                pHs->sortType = eRooms;
+                break;
+        }
+    } while (opt < 1 || opt > 3);
+}
+
+
+
+void printAllHotels(HotelSystem *pHs) {
     printf("%-20s %-27s %s\n", "Hotel name", "Address", "Rating");
     for (int i = 0; i < pHs->numOfHotels; i++) {
         printHotel(&pHs->hotelsArr[i]);
@@ -74,8 +99,7 @@ void printAllHotels(HotelSystem *pHs)
     }
 }
 
-void freeSystem(HotelSystem *pHs)
-{
+void freeSystem(HotelSystem *pHs) {
     for (int i = 0; i < pHs->numOfHotels; ++i) {
         freeHotel(&pHs->hotelsArr[i]);
         free(pHs->hotelsArr);

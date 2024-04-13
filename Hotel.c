@@ -201,9 +201,12 @@ int addReview(Hotel *pHotel) {
     NODE *pNode = &pHotel->reviewsList.head;
     L_insert(pNode, pReview);
     pHotel->rating = calcRating(&pHotel->reviewsList);
-    printf("%f",pHotel->rating);
 
     return 1;
+}
+
+void showAllReviews(Hotel *pHotel) {
+    L_print(&pHotel->reviewsList, (void (*)(const void *)) printReview);
 }
 
 double calcRating(LIST *revList) {
@@ -211,13 +214,33 @@ double calcRating(LIST *revList) {
     double sum = 0;
     int count = 0;
     NODE *pNode = &revList->head;
-    while (pNode->next != NULL)
-    {
+    while (pNode->next != NULL) {
         sum += ((Review *) pNode->next->key)->rating;
         count++;
         pNode = pNode->next;
-
     }
 
     return sum / count;
 }
+
+
+int compareByHotelName(const void *v1, const void *v2) {
+    const Hotel *h1 = (const Hotel *) v1;
+    const Hotel *h2 = (const Hotel *) v2;
+    return strcmp(h1->hotelName, h2->hotelName);
+}
+
+int compareByRating(const void *v1, const void *v2) {
+    const Hotel *h1 = (const Hotel *) v1;
+    const Hotel *h2 = (const Hotel *) v2;
+    if (h1->rating > h2->rating)return -1;
+    if (h1->rating < h2->rating)return 1;
+    return 0;
+}
+
+int compareByNumberOfRooms(const void *v1, const void *v2) {
+    const Hotel *h1 = (const Hotel *) v1;
+    const Hotel *h2 = (const Hotel *) v2;
+    return h2->roomCount - h1->roomCount;
+}
+

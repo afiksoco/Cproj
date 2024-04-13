@@ -23,6 +23,11 @@ void freeReview(Review *pReview)
 
 void printReview(Review *pReview)
 {
-    printf("");
+    printf("Comment : \n");
+    printf("%s\n", pReview->comment);
+    printf("Rating : %f\n", pReview->rating);
+    printGuest(&pReview->reviewWriter);
+
+
 }
 
