@@ -101,7 +101,7 @@ int main() {
 
 
             case eFind:
-
+                searchHotel(&hs);
                 break;
 
                 /*	case eTest:

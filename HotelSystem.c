@@ -63,8 +63,7 @@ void printSystem(HotelSystem *pHs) {
     }
 }
 
-void sortHotel(HotelSystem *pHs)
-{
+void sortHotel(HotelSystem *pHs) {
     int opt;
     printf("Base on what field do you want to sort?\n");
     do {
@@ -90,7 +89,6 @@ void sortHotel(HotelSystem *pHs)
 }
 
 
-
 void printAllHotels(HotelSystem *pHs) {
     printf("%-20s %-27s %s\n", "Hotel name", "Address", "Rating");
     for (int i = 0; i < pHs->numOfHotels; i++) {
@@ -105,4 +103,38 @@ void freeSystem(HotelSystem *pHs) {
         free(pHs->hotelsArr);
     }
 }
+
+void searchHotel(const HotelSystem *pHs) {
+    if (pHs->sortType == eNotSorted) {
+        printf("Cant search! array must be sorted!\n");
+        return;
+    }
+    Hotel *pHotel;
+    Hotel h = {0};
+    Hotel *pTemp = &h;
+    if (pHs->sortType == eName) {
+        h.hotelName = getStrExactName("Enter hotel name to search\n");
+        pHotel = bsearch(pTemp, pHs->hotelsArr, pHs->numOfHotels, sizeof(Hotel), compareByHotelName);
+
+    }
+    if (pHs->sortType == eRating) {
+        printf("Enter rating to search by\n");
+        scanf("%lf", &h.rating);
+        pHotel = bsearch(pTemp, pHs->hotelsArr, pHs->numOfHotels, sizeof(Hotel), compareByRating);
+
+    }
+    if (pHs->sortType == eRooms) {
+        printf("Enter number of rooms\n");
+        scanf("%d", &h.roomCount);
+        pHotel = bsearch(pTemp, pHs->hotelsArr, pHs->numOfHotels, sizeof(Hotel), compareByNumberOfRooms);
+
+    }
+    if (!pHotel) {
+        printf("Hotel was not found\n");
+        return;
+    }
+    printf("Hotel found:  ");
+    printHotel(pHotel);
+}
+
 

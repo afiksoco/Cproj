@@ -38,5 +38,7 @@ void freeSystem(HotelSystem *pHs);
 
 void sortHotel(HotelSystem *pHs);
 
+void searchHotel(const HotelSystem *pHs);
+
 
 #endif
