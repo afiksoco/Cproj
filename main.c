@@ -47,10 +47,8 @@ int main() {
                 break;
 
             case eAddRoomToHotel:
-                if (hs.numOfHotels == 0) {
-                    printf("No hotels in system! Exiting...\n");
+                if (isSystemEmpty(&hs))
                     break;
-                }
                 addRoom(hotelInfo(&hs));
                 printf("Room inserted successfully\n");
                 break;
@@ -59,10 +57,8 @@ int main() {
                 break;
 
             case eAddReservation:
-                if (hs.numOfHotels == 0) {
-                    printf("No hotels in system! Exiting...\n");
+                if (isSystemEmpty(&hs))
                     break;
-                }
                 if (!createReservation(hotelInfo(&hs)))
                     printf("Error creating reservation");
 
@@ -70,25 +66,19 @@ int main() {
                 break;
 
             case eAddReview: /// maybe to specific hotel ?
-                if (hs.numOfHotels == 0) {
-                    printf("No hotels in system! Exiting...\n");
+                if (isSystemEmpty(&hs))
                     break;
-                }
-
                 if (!addReview(hotelInfo(&hs)))
                     printf("Error adding review");
 
                 break;
 
             case eCancelReservation:
-                if (hs.numOfHotels == 0) {
-                    printf("No hotels in system! Exiting...\n");
+                if (isSystemEmpty(&hs))
                     break;
-                }
                 if (!cancelReservation(hotelInfo(&hs)))
                     printf("Error canceling reservation");
                 break;
-                // maybe show history ?
 
             case ePrintAllReviews:
                 showAllReviews(hotelInfo(&hs));
@@ -103,11 +93,6 @@ int main() {
             case eFind:
                 searchHotel(&hs);
                 break;
-
-                /*	case eTest:
-                        break;*/
-
-                ///// print all reservations for speccific date ??? maybe tomorrow?
 
             case EXIT:
                 printf("Bye bye\n");

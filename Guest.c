@@ -13,7 +13,11 @@ int initGuest(Guest *pGuest)
 
 void printGuest(Guest *pGuest)
 {
-    printf("");
+    printf("Name : %s\n", pGuest->name);
+    printf("Last name : %s\n", pGuest->lastName);
+    printf("Phone number : %s\n", pGuest->lastName);
+
+
 }
 
 void freeGuest(Guest *pGuest)

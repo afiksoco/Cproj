@@ -38,7 +38,7 @@ void initRoom(Room *pRoom, int roomCount) {
 
 
 void printRoom(Room *pRoom) {
-    printf("%-15s %-15d %-15d\n", RoomTypeStr[pRoom->type], pRoom->roomNumber, pRoom->capacity);
+    printf("%-20s %-25d %d\n", RoomTypeStr[pRoom->type], pRoom->roomNumber, pRoom->capacity);
 }
 
 void freeRoom(Room *pRoom)

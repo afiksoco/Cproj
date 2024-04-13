@@ -24,7 +24,7 @@ typedef struct {
 void initHotelSystem(HotelSystem *pHs);
 
 
-void printAllHotels(HotelSystem *pHs);
+void printAllHotels(const HotelSystem *pHs);
 
 int addHotelToSystem(HotelSystem *pHs);
 
@@ -39,6 +39,8 @@ void freeSystem(HotelSystem *pHs);
 void sortHotel(HotelSystem *pHs);
 
 void searchHotel(const HotelSystem *pHs);
+
+int isSystemEmpty(const HotelSystem *pHs);
 
 
 #endif

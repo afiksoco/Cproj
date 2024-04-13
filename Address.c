@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "Address.h"
 #include "General.h"
 
-void printAddress(Address* pAddress) {
+void printAddress(Address *pAddress) {
 
+
+    int totalWidth = 24;
+    int stateLen = strlen(pAddress->state);
     printf("%s, ", pAddress->state);
-    printf("%-20s", pAddress->city);
+    printf("%-*s", totalWidth - stateLen, pAddress->city);
 
 }
 
-void initAddress(Address* pAddress)
-{
+void initAddress(Address *pAddress) {
     pAddress->state = getStrExactName("\nEnter state\n");
     pAddress->city = getStrExactName("\nEnter city\n");
     toTitleCase(pAddress->state);
@@ -20,8 +24,7 @@ void initAddress(Address* pAddress)
 
 }
 
-void freeAddress(Address* pAddress)
-{
+void freeAddress(Address *pAddress) {
     free(pAddress->city);
     free(pAddress->state);
 }

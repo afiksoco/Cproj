@@ -75,17 +75,12 @@ void getReservationCode(char *code) {
 }
 
 void printReservation(Reservation *pRes) {
-  /*  printf("Reservation #%s:\n", pRes->reservationCode);
-    printf("Check in : ");
-    printDate(&pRes->checkInDate);
-    printf("Check out : ");
-    printDate(&pRes->checkOutDate);
-    printf("\nRoom type : %s", RoomTypeStr[pRes->roomReserved.type]);*/
+
     printf("%-15s ", pRes->reservationCode);
     printDate(&pRes->checkInDate);
-    printf("           ");
+    printf("      ");
     printDate(&pRes->checkOutDate);
-    printf("%15s ", RoomTypeStr[pRes->roomReserved.type]);
+    printf("%12s ", RoomTypeStr[pRes->roomReserved.type]);
 
 
 

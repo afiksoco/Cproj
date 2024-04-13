@@ -15,9 +15,9 @@ typedef struct {
     Facility *facilities;
     LIST reviewsList;
     Room *hotelRooms;
-    Guest **hotelGuests;
+   // Guest **hotelGuests;
     int roomCount;
-    int guestCount;
+  //  int guestCount;
     int reservationCount;
     Reservation **allReservations;
 

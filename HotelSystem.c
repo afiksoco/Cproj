@@ -54,11 +54,13 @@ Hotel *hotelInfo(HotelSystem *pHs) {
 
 void printSystem(HotelSystem *pHs) {
     for (int i = 0; i < pHs->numOfHotels; i++) {
-        printf("%-20s %-27s %s\n", "Hotel name", "Address", "Rating");
+        printf("%-20s %-25s %s\n", "Hotel name", "Address", "Rating");
         Hotel *pHotel = &pHs->hotelsArr[i];
         printHotel(pHotel);
         printAllRooms(pHotel);
-
+        showAllReservations(pHotel);
+        printf("Reviews :\n");
+        showAllReviews(pHotel);
         printf("\n");
     }
 }
@@ -89,8 +91,8 @@ void sortHotel(HotelSystem *pHs) {
 }
 
 
-void printAllHotels(HotelSystem *pHs) {
-    printf("%-20s %-27s %s\n", "Hotel name", "Address", "Rating");
+void printAllHotels(const HotelSystem *pHs) {
+    printf("%-20s %-25s %s\n", "Hotel name", "Address", "Rating");
     for (int i = 0; i < pHs->numOfHotels; i++) {
         printHotel(&pHs->hotelsArr[i]);
         printf("\n");
@@ -102,6 +104,14 @@ void freeSystem(HotelSystem *pHs) {
         freeHotel(&pHs->hotelsArr[i]);
         free(pHs->hotelsArr);
     }
+}
+
+int isSystemEmpty(const HotelSystem *pHs) {
+    if (pHs->numOfHotels == 0) {
+        printf("No hotels in system! Exiting...\n");
+        return 1;
+    }
+    return 0;
 }
 
 void searchHotel(const HotelSystem *pHs) {

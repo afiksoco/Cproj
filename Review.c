@@ -25,8 +25,8 @@ void printReview(Review *pReview)
 {
     printf("Comment : \n");
     printf("%s\n", pReview->comment);
-    printf("Rating : %f\n", pReview->rating);
-    printGuest(&pReview->reviewWriter);
+    printf("Rating : %.1f\n", pReview->rating);
+    printf("By : %s %s\n\n",pReview->reviewWriter.name, pReview->reviewWriter.lastName);
 
 
 }

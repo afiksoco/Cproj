@@ -10,9 +10,9 @@
 void printHotel(Hotel *pHotel) {
     printf("%-21s", pHotel->hotelName);
     printAddress(&pHotel->address);
-    if (pHotel->rating == 0) printf("%-10s", "no rating yet");
+    if (pHotel->rating == 0) printf("%s", "no rating yet");
     else
-        printf("%-10f", pHotel->rating);
+        printf("%-10.1f", pHotel->rating);
 
 
 }
@@ -31,13 +31,13 @@ int initHotel(Hotel *pHotel) {
     toTitleCase(pHotel->hotelName);
     initAddress(&pHotel->address);
     pHotel->rating = 0;
-    pHotel->guestCount = 0;
+    //pHotel->guestCount = 0;
     pHotel->reservationCount = 0;
     pHotel->roomCount = 0;
     pHotel->allReservations = NULL;
     pHotel->facilities = NULL;
     pHotel->hotelRooms = NULL;
-    pHotel->hotelGuests = NULL;
+  //  pHotel->hotelGuests = NULL;
 
     BOOL val = L_init(&pHotel->reviewsList);
     if (val == 0)
@@ -58,6 +58,7 @@ int createReservation(Hotel *pHotel) {
     if (!pReservation) return 0;
 
     Room *pRoom = getRoom(pHotel);
+
     initReservation(pReservation, pHotel->allReservations, pHotel->reservationCount, pRoom);
     pHotel->allReservations = (Reservation **) realloc(pHotel->allReservations,
                                                        (pHotel->reservationCount + 1) * sizeof(Reservation *));
@@ -70,8 +71,8 @@ int createReservation(Hotel *pHotel) {
 
     printReservation(pReservation);
     return 1;
-
 }
+
 
 int isRoomOccupied(Reservation **reservations, int size, int roomNumber, Date checkin, Date checkout) {
     for (int i = 0; i < size; i++) {
@@ -99,7 +100,7 @@ Room *getRoom(Hotel *pHotel) {
 }
 
 void printAllRooms(Hotel *pHotel) {
-    printf("\n%-15s %-15s %-15s\n", "Room type", "Room number", "Capacity");
+    printf("\n%-20s %-25s %s\n", "Room type", "Room number", "Capacity");
     for (int i = 0; i < pHotel->roomCount; i++) {
         printRoom(&pHotel->hotelRooms[i]);
     }
@@ -134,12 +135,12 @@ void freeResArray(Reservation **allRes, int size) {
 
 int cancelReservation(Hotel *pHotel) {
     if (pHotel->reservationCount == 0)
-        printf("No reservations for this hotel! Exiting...");
+        printf("No reservations for this hotel! Exiting...\n");
     showAllReservations(pHotel);
-    char *id = getStrExactName("Choose reservation by its ID");
+    char *id = getStrExactName("Choose reservation by its ID\n");
     Reservation *res = getReservationByCode(pHotel, id);
     if (!res) {
-        printf("No such reservation. Exiting...");
+        printf("No such reservation. Exiting...\n");
         return 0;
     }
     int index = -1;
