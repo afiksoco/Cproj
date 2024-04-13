@@ -11,9 +11,9 @@ int initGuest(Guest *pGuest)
     pGuest->phoneNumber = getStrExactName("Enter phone number");
 }
 
-void printGuest()
+void printGuest(Guest *pGuest)
 {
-
+    printf("");
 }
 
 void freeGuest(Guest *pGuest)
@@ -21,5 +21,4 @@ void freeGuest(Guest *pGuest)
     free(pGuest->name);
     free(pGuest->lastName);
     free(pGuest->phoneNumber);
-    free(pGuest->id);
 }

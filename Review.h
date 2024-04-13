@@ -11,6 +11,8 @@ typedef struct
 	Guest		reviewWriter;
 }Review;
 
-
+int initReview(Review *pReview);
+void freeReview(Review *pReview);
+void printReview(Review *pReview);
 
 #endif

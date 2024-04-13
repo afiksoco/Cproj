@@ -13,7 +13,6 @@ add_executable(Cproj main.c
         HotelSystem.c
         Reservation.c
         Review.c
-        User.c
         Room.c
         List.c
         Review.h

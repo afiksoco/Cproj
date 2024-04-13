@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "Hotel.h"
 #include "General.h"
+#include "Review.h"
+
 
 void printHotel(Hotel *pHotel) {
     printf("%-21s", pHotel->hotelName);
@@ -87,7 +91,7 @@ Room *getRoom(Hotel *pHotel) {
     scanf("%d", &roomNumber);
     for (int i = 0; i < pHotel->roomCount; ++i) {
         if (roomNumber == pHotel->hotelRooms[i].roomNumber) {
-            printf("Chosen room number %d", pHotel->hotelRooms[i].roomNumber);
+            printf("Chosen room number %d\n", pHotel->hotelRooms[i].roomNumber);
             return &pHotel->hotelRooms[i];
         }
     }
@@ -126,4 +130,87 @@ void freeResArray(Reservation **allRes, int size) {
     for (int i = 0; i < size; i++)
         free(allRes[i]);
 
+}
+
+int cancelReservation(Hotel *pHotel) {
+    if (pHotel->reservationCount == 0)
+        printf("No reservations for this hotel! Exiting...");
+    showAllReservations(pHotel);
+    char *id = getStrExactName("Choose reservation by its ID");
+    Reservation *res = getReservationByCode(pHotel, id);
+    if (!res) {
+        printf("No such reservation. Exiting...");
+        return 0;
+    }
+    int index = -1;
+    for (int i = 0; i < pHotel->reservationCount; i++) {
+        if (pHotel->allReservations[i] == res) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1) {
+        printf("Error: Reservation not found in the list.\n");
+        return 0;
+    }
+
+    freeReservation(pHotel->allReservations[index]);
+
+
+    for (int i = index; i < pHotel->reservationCount - 1; i++) {
+        pHotel->allReservations[i] = pHotel->allReservations[i + 1];
+    }
+
+    pHotel->reservationCount--;
+
+    printf("Reservation canceled successfully.\n");
+    showAllReservations(pHotel);
+
+    return 1;
+}
+
+Reservation *getReservationByCode(Hotel *pHotel, char *id) {
+    for (int i = 0; i < pHotel->reservationCount; i++) {
+        if (!strcmp(pHotel->allReservations[i]->reservationCode, id))
+            return pHotel->allReservations[i];
+    }
+    return NULL;
+}
+
+
+void showAllReservations(Hotel *pHotel) {
+    printf("\n%-15s %-15s %-15s %s\n", "Reservation ID", "Check In", "Check Out", "Room Type");
+    for (int i = 0; i < pHotel->reservationCount; ++i) {
+        printReservation(pHotel->allReservations[i]);
+        printf("\n");
+    }
+
+}
+
+int addReview(Hotel *pHotel) {
+    Review *pReview = (Review *) calloc(1, sizeof(Review));
+    if (!pReview)
+        return 0;
+
+    if (!initReview(pReview)) {
+        freeReview(pReview);
+        free(pReview);
+    }
+    NODE *pNode = &pHotel->reviewsList.head;
+    L_insert(pNode, pReview);
+    pHotel->rating = calcRating(&pHotel->reviewsList);
+
+    return 1;
+}
+
+double calcRating(LIST *revList) {
+    double sum = 0;
+    int count = 0;
+    NODE *pNode = &revList->head;
+    while (pNode->next != NULL) {
+        sum += ((Review *) pNode->next->key)->rating;
+        count++;
+    }
+    return sum/count;
 }

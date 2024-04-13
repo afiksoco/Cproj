@@ -32,13 +32,14 @@ void initReservation(Reservation *pReservation, Reservation **resArr, int resCou
             ok = 0;
         }
     } while (!ok);
-    ok = 1;
+
     do {
+        ok = 1;
         getReservationCode(pReservation->reservationCode);
 
         for (int i = 0; i < resCount; i++) {
             if (!strcmp(pReservation->reservationCode, resArr[i]->reservationCode)) {
-                printf("Code already exists");
+                printf("Code already exists\n");
                 ok = 0;
                 break;
             }
@@ -74,10 +75,25 @@ void getReservationCode(char *code) {
 }
 
 void printReservation(Reservation *pRes) {
-    printf("Reservation #%s:\n", pRes->reservationCode);
+  /*  printf("Reservation #%s:\n", pRes->reservationCode);
     printf("Check in : ");
     printDate(&pRes->checkInDate);
     printf("Check out : ");
     printDate(&pRes->checkOutDate);
-    printf("\nRoom type : %s", RoomTypeStr[pRes->roomReserved.type]);
+    printf("\nRoom type : %s", RoomTypeStr[pRes->roomReserved.type]);*/
+    printf("%-15s ", pRes->reservationCode);
+    printDate(&pRes->checkInDate);
+    printf("           ");
+    printDate(&pRes->checkOutDate);
+    printf("%15s ", RoomTypeStr[pRes->roomReserved.type]);
+
+
+
+}
+
+void freeReservation(Reservation *pRes)
+{
+   //
+   // freeGuest(pRes->guestOrdered);
+    free(pRes);
 }

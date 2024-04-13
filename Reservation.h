@@ -30,4 +30,5 @@ void getReservationCode(char *code);
 
 void printReservation(Reservation *pRes);
 
+void freeReservation(Reservation *pRes);
 #endif

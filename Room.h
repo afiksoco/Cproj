@@ -24,10 +24,6 @@ void freeRoom(Room *pRoom);
 
 void printRoom(Room *pRoom);
 
-//int addReservation(Room* pRoom, Reservation *pRes);
-
-//int isRoomOccupied(Reservation *pRes,Room* pRoom);
-
 
 
 #endif

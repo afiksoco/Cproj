@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <ctype.h>
-
+#include <stdlib.h>
 #include "Address.h"
 #include "General.h"
 
@@ -19,4 +18,10 @@ void initAddress(Address* pAddress)
     toTitleCase(pAddress->city);
 
 
+}
+
+void freeAddress(Address* pAddress)
+{
+    free(pAddress->city);
+    free(pAddress->state);
 }

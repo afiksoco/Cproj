@@ -109,12 +109,6 @@ build CMakeFiles/Cproj.dir/Review.c.obj: C_COMPILER__Cproj_unscanned_Debug C$:/U
   OBJECT_DIR = CMakeFiles\Cproj.dir
   OBJECT_FILE_DIR = CMakeFiles\Cproj.dir
 
-build CMakeFiles/Cproj.dir/User.c.obj: C_COMPILER__Cproj_unscanned_Debug C$:/Users/User/CLionProjects/Cproj/User.c || cmake_object_order_depends_target_Cproj
-  DEP_FILE = CMakeFiles\Cproj.dir\User.c.obj.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Cproj.dir
-  OBJECT_FILE_DIR = CMakeFiles\Cproj.dir
-
 build CMakeFiles/Cproj.dir/Room.c.obj: C_COMPILER__Cproj_unscanned_Debug C$:/Users/User/CLionProjects/Cproj/Room.c || cmake_object_order_depends_target_Cproj
   DEP_FILE = CMakeFiles\Cproj.dir\Room.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
@@ -135,7 +129,7 @@ build CMakeFiles/Cproj.dir/List.c.obj: C_COMPILER__Cproj_unscanned_Debug C$:/Use
 #############################################
 # Link the executable Cproj.exe
 
-build Cproj.exe: C_EXECUTABLE_LINKER__Cproj_Debug CMakeFiles/Cproj.dir/main.c.obj CMakeFiles/Cproj.dir/Address.c.obj CMakeFiles/Cproj.dir/Date.c.obj CMakeFiles/Cproj.dir/Facility.c.obj CMakeFiles/Cproj.dir/General.c.obj CMakeFiles/Cproj.dir/Guest.c.obj CMakeFiles/Cproj.dir/Hotel.c.obj CMakeFiles/Cproj.dir/HotelSystem.c.obj CMakeFiles/Cproj.dir/Reservation.c.obj CMakeFiles/Cproj.dir/Review.c.obj CMakeFiles/Cproj.dir/User.c.obj CMakeFiles/Cproj.dir/Room.c.obj CMakeFiles/Cproj.dir/List.c.obj
+build Cproj.exe: C_EXECUTABLE_LINKER__Cproj_Debug CMakeFiles/Cproj.dir/main.c.obj CMakeFiles/Cproj.dir/Address.c.obj CMakeFiles/Cproj.dir/Date.c.obj CMakeFiles/Cproj.dir/Facility.c.obj CMakeFiles/Cproj.dir/General.c.obj CMakeFiles/Cproj.dir/Guest.c.obj CMakeFiles/Cproj.dir/Hotel.c.obj CMakeFiles/Cproj.dir/HotelSystem.c.obj CMakeFiles/Cproj.dir/Reservation.c.obj CMakeFiles/Cproj.dir/Review.c.obj CMakeFiles/Cproj.dir/Room.c.obj CMakeFiles/Cproj.dir/List.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Cproj.dir

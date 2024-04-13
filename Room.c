@@ -41,6 +41,7 @@ void printRoom(Room *pRoom) {
     printf("%-15s %-15d %-15d\n", RoomTypeStr[pRoom->type], pRoom->roomNumber, pRoom->capacity);
 }
 
-void freeRoom(Room *pRoom) {
-
+void freeRoom(Room *pRoom)
+{
+    free(pRoom);
 }

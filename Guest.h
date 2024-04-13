@@ -4,14 +4,15 @@
 
 typedef struct
 {
-
 	char*		name;
 	char*		lastName;
 	char*		phoneNumber;
-	char*		id;
-
 }Guest;
 
 int initGuest(Guest *pGuest);
+
+void printGuest(Guest *pGuest);
+
+void freeGuest(Guest *pGuest);
 
 #endif

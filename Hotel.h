@@ -11,7 +11,7 @@
 typedef struct {
     char *hotelName;
     Address address;
-    int rating;
+    double rating;
     Facility *facilities;
     LIST reviewsList;
     Room *hotelRooms;
@@ -40,9 +40,18 @@ int createReservation(Hotel *pHotel);
 
 void freeResArray(Reservation **allRes, int size);
 
-int isRoomOccupied(Reservation **reservations, int size,int roomNumber, Date checkin, Date checkout);
+int isRoomOccupied(Reservation **reservations, int size, int roomNumber, Date checkin, Date checkout);
 
-void printOccupiedDates(Reservation **reservations, int size,int roomNumber);
+void printOccupiedDates(Reservation **reservations, int size, int roomNumber);
 
+void showAllReservations(Hotel *pHotel);
+
+int cancelReservation(Hotel *pHotel);
+
+Reservation *getReservationByCode(Hotel *pHotel, char *id);
+
+int addReview(Hotel *pHotel);
+
+double calcRating(LIST *revList);
 
 #endif

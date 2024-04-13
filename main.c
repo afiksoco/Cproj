@@ -23,14 +23,9 @@ int menu();
 int main() {
     HotelSystem hs;
     initHotelSystem(&hs);
-    // User* pUser = userInfo(&hs);
-
 
     int option;
     int stop = 0;
-    //Date d;
-    //initDate(&d);
-    //printDate(&d);
 
     do {
         option = menu();
@@ -62,7 +57,7 @@ int main() {
                 printSystem(&hs);
                 break;
 
-            case eAddReservation: ////////?????
+            case eAddReservation:
                 if (hs.numOfHotels == 0) {
                     printf("No hotels in system! Exiting...\n");
                     break;
@@ -74,11 +69,23 @@ int main() {
                 break;
 
             case eAddReview: /// maybe to specific hotel ?
+                if (hs.numOfHotels == 0) {
+                    printf("No hotels in system! Exiting...\n");
+                    break;
+                }
+
+                if (!addReview(hotelInfo(&hs)))
+                    printf("Error adding review");
 
                 break;
 
             case eCancelReservation:
-
+                if (hs.numOfHotels == 0) {
+                    printf("No hotels in system! Exiting...\n");
+                    break;
+                }
+                if (!cancelReservation(hotelInfo(&hs)))
+                    printf("Error canceling reservation");
                 break;
                 // maybe show history ?
 

@@ -10,9 +10,8 @@
 void initHotelSystem(HotelSystem *pHs) {
     pHs->hotelsArr = NULL;
     pHs->numOfHotels = 0;
-    pHs->numOfUsers = 0;
-}
 
+}
 
 int addHotelToSystem(HotelSystem *pHs) {
     pHs->hotelsArr = (Hotel *) realloc(pHs->hotelsArr, (pHs->numOfHotels + 1) * sizeof(Hotel));
@@ -72,6 +71,14 @@ void printAllHotels(HotelSystem *pHs)
     for (int i = 0; i < pHs->numOfHotels; i++) {
         printHotel(&pHs->hotelsArr[i]);
         printf("\n");
+    }
+}
+
+void freeSystem(HotelSystem *pHs)
+{
+    for (int i = 0; i < pHs->numOfHotels; ++i) {
+        freeHotel(&pHs->hotelsArr[i]);
+        free(pHs->hotelsArr);
     }
 }
 
